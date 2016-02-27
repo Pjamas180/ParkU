@@ -8,6 +8,8 @@
 	<link href="css/login.css" rel="stylesheet">
 	<link href="css/credentials.css" rel="stylesheet">
 	<link href="css/parku.css" rel="stylesheet">
+	<!-- <link href="css/animate.css" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="sweetalert2-master/dist/sweetalert2.css">
 </head>
 <body>
 	<div id="clouds">
@@ -28,28 +30,28 @@
 						</div>
 						<!-- Sign in button type is temporarily button... should be "submit" -->
 						<button type="submit" id="signin">Sign in</button>
-						<button type="button" id="signup">Get Started</button>
+						<button type="button" id="signup">New User</button>
 					</form>
 				</div>
 				<p id="register">Register a @ucsd.edu email and password.</p>
 				<div class="signup_view account login" id="signup_account">
 					<!-- This is the form for the new users -->
-					<form action="/signup" method="post">
+					<form name="new_user" action="/signup" method="post">
 						<ul class="emailAlert" id="emailChecker"></ul>
 						<div class="form_row form_row_email">
 							<label for="signup_email"></label>
-							<input type="email" placeholder="@ucsd.edu" id="signup_email" name="username" data-required="required"/>
+							<input type="email" placeholder="@ucsd.edu" id="signup_email" name="username" required/>
 						</div>
 						<div class="form_row form_row_password">
 							<label for="signup_password"></label>
-							<input type="password" placeholder="Password" id="signup_password" name="password" data-required="required"/>
+							<input type="password" placeholder="Password" id="signup_password" name="password" required/>
 						</div>
 						<div class="form_row form_row_password">
 							<label for="signup_password"></label>
-							<input type="password" placeholder="Re-enter Password" id="signup_password_confirm" data-required="required"/>
+							<input type="password" placeholder="Re-enter Password" id="signup_password_confirm" required/>
 						</div>
 						<ul class="registrationFormAlert" id="divCheckPasswordMatch"></ul>
-						<button type="submit" id="create">Sign Up</button>
+						<button type="submit" value="Submit" id="create">Sign Up</button>
 					</form>
 				</div>
 			</div>
