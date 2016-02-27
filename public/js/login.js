@@ -33,9 +33,22 @@ $(document).ready(function () {
 	$("#signin").click(function(){
 		if( $("#signin").text() == "Log in" )
 		{
+			var email = $("#name").val();
+			var password = $("#password").val();
+
 			$("#signin").css('background-color', 'gray');
 			$("#signin").attr('disabled', 'disabled');
 			$("#signin").addClass('disabled');
+
+			/* Small bug when u prefill login credentials and then press login 
+				-> logs in before animation finishes -> even if it is incorrect -> refreshes page
+				Need to check if email and password match and give error instead of refresh page. 
+			*/
+			if( validateEmail(email) && password !== ""  ){
+				$('#signin').css('background-color', '#4CAF50');
+				$('#signin').removeAttr('disabled');
+				$('#signin').removeClass('disabled');
+			}
 			$("#register").slideUp(1200);
 			$("#signin").text("Sign in");	
 			$("#firstInputs").slideDown(1200);
@@ -54,12 +67,14 @@ function checkLoginInputs(){
 		$('#signin').css('background-color', 'gray');
 		$("#signin").attr('disabled', 'disabled');
 		$('#signin').addClass('disabled');
+		return false;
 	}
 	/* only enable if the email is valid and password is not blank */
 	else if(password !== "" && validateEmail(email)){
 		$('#signin').css('background-color', '#4CAF50');
 		$('#signin').removeAttr('disabled');
 		$('#signin').removeClass('disabled');
+		return true;
 	}
 }
 
