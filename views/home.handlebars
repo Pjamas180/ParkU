@@ -78,9 +78,11 @@
 
                 <!-- Dropdown for Vehicle list, gets registered vehicles from database -->
                 <h3>Select your vehicle:</h3>
-                <select id="cd-dropdown3" name="cd-dropdown" class="cd-select is-hidden" required>
+                <select id="cd-dropdown3" name="cd-dropdown" class="cd-select is-hidden vehicles">
                     <option value="-1" selected>Vehicle</option>
-                    <option value="1">{{car}}</option>
+                    {{#each car}}
+                    <option value="1">{{vehicleName}}</option>
+                    {{/each}}
                 </select>
             </section>
             <!-- Purchase button that prompts user with sweetalerts -->
@@ -123,5 +125,6 @@
         } );
     });
     </script>
+
 </body>
 </html>
