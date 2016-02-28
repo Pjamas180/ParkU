@@ -84,21 +84,21 @@ if ('development' == app.get('env')) {
 // ******************* SETTING UP MYSQL ******************* //
 var mysql = require("mysql");
 
-  // First you need to create a connection to the db
-  var con = mysql.createConnection({
+// First you need to create a connection to the db
+var con = mysql.createConnection({
     host: 'jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'hacd9bv6o2fyqb9a',
     password: 'w5c6dw6vb9blc07b',
     database: 'ifevrxznxvctquex'
-  });
+});
 
-  con.connect(function(err){
+con.connect(function(err){
     if(err){
-      console.log('Error connecting to Db');
-      return;
+        console.log('Error connecting to Db');
+        return;
     }
     console.log('Connection established');
-  });
+});
 // ******************* SETTING UP MYSQL ******************* //
 
 // Add routes here
@@ -174,16 +174,93 @@ app.get('/vehicles', function(req, res) {
     con.query('SELECT vehicleId, vehicleName FROM vehicles WHERE userId = ?', userIden,
         function(err, rows) {
             if (err) throw err;
-            /*
-            console.log(rows.length);
-            for (i = 0; i < rows.length; i++ ) {
-                console.log(rows[i]);
+
+            var vehiclesJSON = {
+              'vehicles': []
             }
-            */
-            res.json(rows);
+
+            for (i=0; i < rows.length; i++ ) {
+              vehiclesJSON.vehicles.push({
+                'vehicleName' : rows[i].vehicleName,
+                'vehicleId' : rows[i].vehicleId
+              });
+            }
+
+            res.json(vehiclesJSON);
         }
     );
 });
+
+app.get('/parkingLot', function(req, res) {
+
+  var async = require('async');
+
+  var QueryBuilder = require('./index.js');
+
+  var tableDefinition = {
+    sTableName: 'vehicles',
+    sSelectSql: "vehicleId, vehicleName"
+  };
+
+  var queryBuilder = new QueryBuilder(tableDefinition);
+
+  var requestQuery = {
+  };
+
+  var queries = queryBuilder.buildQuery(requestQuery);
+  console.log(queries);
+
+  var vehiclesJSON = {
+    'vehicles': []
+  }
+
+  con.query(queries.select, function(err, rows) {
+    //console.log(rows);
+
+    for (i=0; i < rows.length; i++ ) {
+      vehiclesJSON.vehicles.push({
+        'vehicleName' : rows[i].vehicleName,
+        'vehicleId' : rows[i].vehicleId
+      });
+    }
+
+    res.json(vehiclesJSON);
+  });
+  //console.log(vehiclesJSON);
+console.log(queries.select);
+//console.log(queries.changeDatabaseOrSchema);
+console.log(queries.recordsFiltered);
+console.log(queries.recordsTotal);
+
+        async.parallel(
+            {
+                recordsFiltered: function(cb) {
+                    con.query(queries.recordsFiltered, cb);
+                },
+                recordsTotal: function(cb) {
+                    con.query(queries.recordsTotal, cb);
+                },
+                select: function(cb) {
+                    con.query(queries.select, cb);
+                }
+            },
+            function(err, results) {
+                  console.log("is it here?");
+                  console.log(queryBuilder.parseResponse(results));
+                    //res.json(queryBuilder.parseResponse(results));
+            }
+        );
+
+
+});
+
+// Admin Page
+
+app.get('/admin', function(req, res) {
+  res.render('adminhome');
+});
+
+
 // 404 not found
 app.use(route.notFound404);
 

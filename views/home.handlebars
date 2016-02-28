@@ -60,7 +60,7 @@
             <p class="custom_option">To purchase a permit complete the list below.</p>
             <section class="main clearfix">              
                 <h3>Select a spot type:</h3>
-                <select id="cd-dropdown" name="cd-dropdown" class="cd-select is-hidden">
+                <select id="cd-dropdown" name="cd-dropdown" class="cd-select is-hidden" onchange="test()">
                     <option value="-1" selected>Spot Type</option>
                     <option value="1">Visitor (V)</option>
                     <option value="2">Visitor Premium (VP)</option>
@@ -119,6 +119,7 @@
             gutter : 0
         } );
     });
+
     </script>
 
 </body>

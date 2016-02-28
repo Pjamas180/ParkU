@@ -1,7 +1,18 @@
+//var $ = require('jquery');
+//var dt = require( 'datatables.net' )();
+
 $(document).ready(function() {
-    $('#example').DataTable( {
+	console.log("creating datatable");
+    $('#parkingLot').DataTable( {
         "processing": true,
         "serverSide": true,
-        "ajax": "scripts/server_processing.php"
-    } );
-} );
+        "ajax": {
+        	url: "/parkingLot",
+        	dataSrc: "vehicles"
+        },
+        "columns": [
+        {data: "vehicleId"},
+        {data: "vehicleName"}
+        ]
+    });
+});
