@@ -2,12 +2,30 @@
 
 <html>
 <head>
+
+	<!-- Google Analytics Content Experiment code -->
+	<script>function utmx_section(){}function utmx(){}(function(){var
+		k='117696581-0',d=document,l=d.location,c=d.cookie;
+		if(l.search.indexOf('utm_expid='+k)>0)return;
+		function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+			indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+				length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+			'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+				'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+			'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+			valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+			'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+			</script><script>utmx('url','A/B');</script>
+	<!-- End of Google Analytics Content Experiment code -->
+
 	<title>ParkU</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/login.css" rel="stylesheet">
 	<link href="css/credentials.css" rel="stylesheet">
 	<link href="css/parku.css" rel="stylesheet">
+	<!-- <link href="css/animate.css" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="sweetalert2-master/dist/sweetalert2.css">
 </head>
 <body>
 	<div id="clouds">
@@ -28,28 +46,28 @@
 						</div>
 						<!-- Sign in button type is temporarily button... should be "submit" -->
 						<button type="submit" id="signin">Sign in</button>
-						<button type="button" id="signup">Get Started</button>
+						<button type="button" id="signup">New User</button>
 					</form>
 				</div>
 				<p id="register">Register a @ucsd.edu email and password.</p>
 				<div class="signup_view account login" id="signup_account">
 					<!-- This is the form for the new users -->
-					<form action="/signup" method="post">
+					<form name="new_user" action="/signup" method="post">
 						<ul class="emailAlert" id="emailChecker"></ul>
 						<div class="form_row form_row_email">
 							<label for="signup_email"></label>
-							<input type="email" placeholder="@ucsd.edu" id="signup_email" name="username" data-required="required"/>
+							<input type="email" placeholder="@ucsd.edu" id="signup_email" name="username" required/>
 						</div>
 						<div class="form_row form_row_password">
 							<label for="signup_password"></label>
-							<input type="password" placeholder="Password" id="signup_password" name="password" data-required="required"/>
+							<input type="password" placeholder="Password" id="signup_password" name="password" required/>
 						</div>
 						<div class="form_row form_row_password">
 							<label for="signup_password"></label>
-							<input type="password" placeholder="Re-enter Password" id="signup_password_confirm" data-required="required"/>
+							<input type="password" placeholder="Re-enter Password" id="signup_password_confirm" required/>
 						</div>
 						<ul class="registrationFormAlert" id="divCheckPasswordMatch"></ul>
-						<button type="submit" id="create">Sign Up</button>
+						<button type="submit" value="Submit" id="create">Sign Up</button>
 					</form>
 				</div>
 			</div>
