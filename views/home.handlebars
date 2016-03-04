@@ -2,6 +2,7 @@
 
 <html>
 <head>
+
     <title>ParkU</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,6 +27,9 @@
 
     <!-- Webpage Logo -->
     <link rel="shortcut icon" href="images/favicon.ico">
+
+    <script src="js/jquery.js"></script>
+
 </head>
 <body>
     <div class="wrapper">
@@ -34,7 +38,11 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <a href="/home">
+<<<<<<< HEAD
                         <img alt="ParkU" src="images/car.png" href="home.html">
+=======
+                        <img alt="ParkU" src="images/car.png" id="logo">
+>>>>>>> 1f5707391acb61d0d6da1cf5f7c50c34a29cbed0
                     </a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -78,13 +86,13 @@
                         <option value="d">8 hours</option>
                         <option value="e">All Day</option>
                     </select>
-
+                    
                     <!-- Dropdown for Vehicle list, gets registered vehicles from database -->
                     <h3>Select your vehicle:</h3>
                     <select id="cd-dropdown3" name="cd-dropdown" class="cd-select is-hidden vehicles">
                         <option value="-1" selected>Vehicle</option>
                         {{#each car}}
-                        <option value="1">{{vehicleName}}</option>
+                        <option value="1">{{vehicleName}} - {{licensePlateNumber}}</option>
                         {{/each}}
                     </select>
                 </form>
@@ -130,6 +138,7 @@
             gutter : 0
         } );
     });
+
     </script>
 
 </body>

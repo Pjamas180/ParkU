@@ -97,21 +97,21 @@ if ('development' == app.get('env')) {
 // ******************* SETTING UP MYSQL ******************* //
 var mysql = require("mysql");
 
-  // First you need to create a connection to the db
-  var con = mysql.createConnection({
+// First you need to create a connection to the db
+var con = mysql.createConnection({
     host: 'jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'hacd9bv6o2fyqb9a',
     password: 'w5c6dw6vb9blc07b',
     database: 'ifevrxznxvctquex'
-  });
+});
 
-  con.connect(function(err){
+con.connect(function(err){
     if(err){
-      console.log('Error connecting to Db');
-      return;
+        console.log('Error connecting to Db');
+        return;
     }
     console.log('Connection established');
-  });
+});
 // ******************* SETTING UP MYSQL ******************* //
 
 // Add routes here
@@ -125,7 +125,7 @@ app.get('/home', function(req, res, next) {
       var username = req.user.attributes.username;
       // Get all vehicles of the user.
 
-      con.query('SELECT vehicleId, vehicleName FROM vehicles WHERE userId = ?', userIden,
+      con.query('SELECT vehicleId, vehicleName, licensePlateNumber FROM vehicles WHERE userId = ?', userIden,
           function(err, rows) {
               if (err) throw err;
               var homePageJSON = {
@@ -135,7 +135,8 @@ app.get('/home', function(req, res, next) {
 
               for (var i = 0; i < rows.length; i++) {
                 homePageJSON.car.push({
-                  'vehicleName' : rows[i].vehicleName
+                  'vehicleName' : rows[i].vehicleName,
+                  'licensePlateNumber': rows[i].licensePlateNumber
                 });
               }
               res.render('home', homePageJSON);
@@ -189,8 +190,11 @@ app.post('/settings', function(req, res) {
   // Get the inputted vehicle
   var vehicleInput = req.body.vehicle;
 
+  // Get the inputted license plate n umber
+  var licensePlateNumber = req.body.license_plate;
+
   // Used to insert into vehicles table
-  var vehicle = {userId: userIden, vehicleName: vehicleInput, licensePlateNumber: 'abc123'};
+  var vehicle = {userId: userIden, vehicleName: vehicleInput, licensePlateNumber: licensePlateNumber};
   con.query('INSERT INTO vehicles SET ?', vehicle, function(err, res) {
     if (err) throw err;
 
@@ -205,7 +209,7 @@ app.get('/vehicles', function(req, res) {
     var userIden = req.user.get("userId");
     //console.log(userIden);
     // Get all vehicles of the user.
-    con.query('SELECT vehicleId, vehicleName FROM vehicles WHERE userId = ?', userIden,
+    con.query('SELECT vehicleId, vehicleName, licensePlateNumber FROM vehicles WHERE userId = ?', userIden,
         function(err, rows) {
             if (err) throw err;
             /*
@@ -218,6 +222,77 @@ app.get('/vehicles', function(req, res) {
         }
     );
 });
+
+app.get('/parkingLot', function(req, res) {
+
+  var async = require('async');
+
+  var QueryBuilder = require('./index.js');
+
+  var tableDefinition = {
+    sTableName: 'vehicles',
+    sSelectSql: "vehicleId, vehicleName"
+  };
+
+  var queryBuilder = new QueryBuilder(tableDefinition);
+
+  var requestQuery = {
+  };
+
+  var queries = queryBuilder.buildQuery(requestQuery);
+  console.log(queries);
+
+  var vehiclesJSON = {
+    'vehicles': []
+  }
+
+  con.query(queries.select, function(err, rows) {
+    //console.log(rows);
+
+    for (i=0; i < rows.length; i++ ) {
+      vehiclesJSON.vehicles.push({
+        'vehicleName' : rows[i].vehicleName,
+        'vehicleId' : rows[i].vehicleId
+      });
+    }
+
+    res.json(vehiclesJSON);
+  });
+  //console.log(vehiclesJSON);
+console.log(queries.select);
+//console.log(queries.changeDatabaseOrSchema);
+console.log(queries.recordsFiltered);
+console.log(queries.recordsTotal);
+
+        async.parallel(
+            {
+                recordsFiltered: function(cb) {
+                    con.query(queries.recordsFiltered, cb);
+                },
+                recordsTotal: function(cb) {
+                    con.query(queries.recordsTotal, cb);
+                },
+                select: function(cb) {
+                    con.query(queries.select, cb);
+                }
+            },
+            function(err, results) {
+                  console.log("is it here?");
+                  console.log(queryBuilder.parseResponse(results));
+                    //res.json(queryBuilder.parseResponse(results));
+            }
+        );
+
+
+});
+
+// Admin Page
+
+app.get('/admin', function(req, res) {
+  res.render('adminhome');
+});
+
+
 // 404 not found
 app.use(route.notFound404);
 

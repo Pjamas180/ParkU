@@ -2,21 +2,28 @@
 <html lang="en">
    <head>
       <title>Admin Home</title>
-      <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+      <link href="DataTables-1.10.11/media/css/jquery.dataTables.min.css" rel="stylesheet">
+      <link href="DataTables-1.10.11/media/css/jquery.dataTables.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+      <script src="DataTables-1.10.11/media/js/jquery.dataTables.js"></script>
+      <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
    </head>
 
    <body>
-        <table id="example" class="display" cellspacing="0" width="100%">
+        <table id="parkingLot" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Username</th>
+                    <th>VehicleId</th>
+                    <th>Vehicle</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Username</th>
+                    <th>VehicleId</th>
+                    <th>Vehicle</th>
                 </tr>
             </tfoot>
         </table>
     </body>
+    <script src="js/adminhome.js"></script>
 </html>

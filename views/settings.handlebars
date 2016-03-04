@@ -20,6 +20,8 @@
 
     <!-- Navbar CSS -->
     <link href="css/navbar.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+
 </head>
 <body>
     <div class="wrapper">
@@ -28,7 +30,7 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <a href="/home">
-                        <img alt="ParkU" src="images/car.png" href="home.html">
+                        <img alt="ParkU" src="images/car.png" id="logo">
                     </a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -51,8 +53,6 @@
             </div>
         </nav>    
 
-
-
         <h1>User: {{message}}</h1><br><br>
         <form id="vehicleForm" action="settings" method="post">
             <div>
@@ -68,9 +68,5 @@
         
     <!-- End of Wrapper -->
     </div>
-    <script>
-
-
-    </script>
 </body>
 </html>
