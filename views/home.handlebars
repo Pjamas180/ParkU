@@ -3,23 +3,6 @@
 <html>
 <head>
 
-
-    <!-- Google Analytics Content Experiment code OK BUTTON-->
-    <script>function utmx_section(){}function utmx(){}(function(){var
-    k='117696581-4',d=document,l=d.location,c=d.cookie;
-    if(l.search.indexOf('utm_expid='+k)>0)return;
-    function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-    </script>
-    <!-- <script>utmx('url','A/B');</script>
-    End of Google Analytics Content Experiment code -->
-
     <title>ParkU</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +29,6 @@
     <link rel="shortcut icon" href="images/favicon.ico">
 
     <script src="js/jquery.js"></script>
-    <script src="js/docga.js"></script>
 
 </head>
 <body>
@@ -105,7 +87,7 @@
                 <select id="cd-dropdown3" name="cd-dropdown" class="cd-select is-hidden vehicles">
                     <option value="-1" selected>Vehicle</option>
                     {{#each car}}
-                    <option value="1">{{vehicleName}}</option>
+                    <option value="1">{{vehicleName}} - {{licensePlateNumber}}</option>
                     {{/each}}
                 </select>
             </section>
@@ -150,8 +132,6 @@
     });
 
     </script>
-
-    {{> googleAnalytics}}
 
 </body>
 </html>

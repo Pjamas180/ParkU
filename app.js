@@ -125,7 +125,7 @@ app.get('/home', function(req, res, next) {
       var username = req.user.attributes.username;
       // Get all vehicles of the user.
 
-      con.query('SELECT vehicleId, vehicleName FROM vehicles WHERE userId = ?', userIden,
+      con.query('SELECT vehicleId, vehicleName, licensePlateNumber FROM vehicles WHERE userId = ?', userIden,
           function(err, rows) {
               if (err) throw err;
               var homePageJSON = {
@@ -135,7 +135,8 @@ app.get('/home', function(req, res, next) {
 
               for (var i = 0; i < rows.length; i++) {
                 homePageJSON.car.push({
-                  'vehicleName' : rows[i].vehicleName
+                  'vehicleName' : rows[i].vehicleName,
+                  'licensePlateNumber': rows[i].licensePlateNumber
                 });
               }
               res.render('home', homePageJSON);
@@ -189,8 +190,11 @@ app.post('/settings', function(req, res) {
   // Get the inputted vehicle
   var vehicleInput = req.body.vehicle;
 
+  // Get the inputted license plate n umber
+  var licensePlateNumber = req.body.license_plate;
+
   // Used to insert into vehicles table
-  var vehicle = {userId: userIden, vehicleName: vehicleInput, licensePlateNumber: 'abc123'};
+  var vehicle = {userId: userIden, vehicleName: vehicleInput, licensePlateNumber: licensePlateNumber};
   con.query('INSERT INTO vehicles SET ?', vehicle, function(err, res) {
     if (err) throw err;
 
@@ -205,22 +209,16 @@ app.get('/vehicles', function(req, res) {
     var userIden = req.user.get("userId");
     //console.log(userIden);
     // Get all vehicles of the user.
-    con.query('SELECT vehicleId, vehicleName FROM vehicles WHERE userId = ?', userIden,
+    con.query('SELECT vehicleId, vehicleName, licensePlateNumber FROM vehicles WHERE userId = ?', userIden,
         function(err, rows) {
             if (err) throw err;
-
-            var vehiclesJSON = {
-              'vehicles': []
+            /*
+            console.log(rows.length);
+            for (i = 0; i < rows.length; i++ ) {
+                console.log(rows[i]);
             }
-
-            for (i=0; i < rows.length; i++ ) {
-              vehiclesJSON.vehicles.push({
-                'vehicleName' : rows[i].vehicleName,
-                'vehicleId' : rows[i].vehicleId
-              });
-            }
-
-            res.json(vehiclesJSON);
+            */
+            res.json(rows);
         }
     );
 });

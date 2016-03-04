@@ -19,7 +19,7 @@ var home = function(req, res, next) {
       var username = req.user.attributes.username;
       // Get all vehicles of the user.
 
-      con.query('SELECT vehicleId, vehicleName FROM vehicles WHERE userId = ?', userIden,
+      con.query('SELECT vehicleId, vehicleName, licensePlateNumber FROM vehicles WHERE userId = ?', userIden,
           function(err, rows) {
               if (err) throw err;
               var homePageJSON = {
@@ -29,7 +29,8 @@ var home = function(req, res, next) {
 
               for (var i = 0; i < rows.length; i++) {
                 homePageJSON.car.push({
-                  'vehicleName' : rows[i].vehicleName
+                  'vehicleName' : rows[i].vehicleName,
+                  'licensePlateNumber': rows[i].licensePlateNumber
                 });
               }
               res.render('home', homePageJSON);
