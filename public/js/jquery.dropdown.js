@@ -11,15 +11,15 @@
  ;( function( $, window, undefined ) {
  	'use strict';
  	var temp = null;
- 	var data = null;
- 	var vehicleVar = null;
+ 	/*var data = null;
+ 	var vehicleVar = null;*/
 
- 	if(vehicleVar === null || temp === null || data === null )
+/* 	if(vehicleVar === null || temp === null || data === null )
 	{
 		$(".confirmation").css('background-color', 'gray');
 		$(".confirmation").attr('disabled', 'disabled');
 		$(".confirmation").addClass('disabled');
-	}
+	}*/
 
  	$.DropDown = function( options, element ) {
  		this.$el = $( element );
@@ -135,27 +135,27 @@
 			} );
 			this.opts.on( 'click.dropdown', function() {
 				if( self.opened ) {						
-					data = this.getAttribute("data-value");
+					var data = this.getAttribute("data-value");
 					// This is for spot type
 					var spot_Type ='//*[@id="uploadDocsForm"]/div[1]/ul/li[position() >= 1 and position() < 3]/span';
 					var spot_dropdown = document.evaluate( spot_Type, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
 
 					// This is for vehicle list
 					var vehicleXPATH = '//*[@id="uploadDocsForm"]/div[3]/ul/li/span';
-					vehicleVar = document.evaluate( vehicleXPATH, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
+					var vehicleVar = document.evaluate( vehicleXPATH, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
 					console.log(vehicleVar);
 					if(data === "v")
 						temp = "v";
 					else if(data === "vp")
 						temp = "vp";
-					if(temp !== null && data !== null )
+					/*if(temp !== null && data !== null )
 					{
 						
-							$(".confirmation").css('background-color', '#4CAF50');
-							$(".confirmation").removeAttr('disabled');
-							$(".confirmation").removeClass('disabled');
+						$(".confirmation").css('background-color', '#4CAF50');
+						$(".confirmation").removeAttr('disabled');
+						$(".confirmation").removeClass('disabled');
 						
-					}
+					}*/
 					$('button.confirmation').click(function(){
 						if (data === "a" || data === "b" || data === "c" || data === "d" || data === "e"){
 							swal({  
