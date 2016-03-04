@@ -8,14 +8,13 @@
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
-;( function( $, window, undefined ) {
+ ;( function( $, window, undefined ) {
+ 	'use strict';
 
-	'use strict';
-
-	$.DropDown = function( options, element ) {
-		this.$el = $( element );
-		this._init( options );
-	};
+ 	$.DropDown = function( options, element ) {
+ 		this.$el = $( element );
+ 		this._init( options );
+ 	};
 
 	// the options
 	$.DropDown.defaults = {
@@ -52,7 +51,7 @@
 			this.size = { width : this.dd.width(), height : this.dd.height() };
 			
 			var elName = this.$el.attr( 'name' ), elId = this.$el.attr( 'id' ),
-				inputName = elName !== undefined ? elName : elId !== undefined ? elId : 'cd-dropdown-' + ( new Date() ).getTime();
+			inputName = elName !== undefined ? elName : elId !== undefined ? elId : 'cd-dropdown-' + ( new Date() ).getTime();
 
 			this.inputEl = $( '<input type="hidden" name="' + inputName + '" value="' + value + '"></input>' ).insertAfter( this.selectlabel );
 			
@@ -66,15 +65,15 @@
 			var optshtml = '', selectlabel = '', value = -1;
 			this.$el.children( 'option' ).each( function() {
 				var $this = $( this ),
-					val = isNaN( $this.attr( 'value' ) ) ? $this.attr( 'value' ) : Number( $this.attr( 'value' ) ) ,
-					classes = $this.attr( 'class' ),
-					selected = $this.attr( 'selected' ),
-					label = $this.text();
+				val = isNaN( $this.attr( 'value' ) ) ? $this.attr( 'value' ) : Number( $this.attr( 'value' ) ) ,
+				classes = $this.attr( 'class' ),
+				selected = $this.attr( 'selected' ),
+				label = $this.text();
 				if( val !== -1 ) {
 					optshtml += 
-						classes !== undefined ? 
-							'<li data-value="' + val + '"><span class="' + classes + '">' + label + '</span></li>' :
-							'<li data-value="' + val + '"><span>' + label + '</span></li>';
+					classes !== undefined ? 
+					'<li data-value="' + val + '"><span class="' + classes + '">' + label + '</span></li>' :
+					'<li data-value="' + val + '"><span>' + label + '</span></li>';
 				}
 				if( selected ) {
 					selectlabel = label;
@@ -94,27 +93,27 @@
 
 			this.listopts.css( 'height', 'auto' );
 			this.opts
-				.each( function( i ) {
-					$( this ).css( {
-						zIndex : self.minZIndex + self.optsCount - 1 - i,
-						top : self.options.slidingIn ? ( i + 1 ) * ( self.size.height + self.options.gutter ) : 0,
-						left : 0,
-						marginLeft : self.options.slidingIn ? i % 2 === 0 ? self.options.slidingIn : - self.options.slidingIn : 0,
-						opacity : self.options.slidingIn ? 0 : 1,
-						transform : 'none'
-					} );
+			.each( function( i ) {
+				$( this ).css( {
+					zIndex : self.minZIndex + self.optsCount - 1 - i,
+					top : self.options.slidingIn ? ( i + 1 ) * ( self.size.height + self.options.gutter ) : 0,
+					left : 0,
+					marginLeft : self.options.slidingIn ? i % 2 === 0 ? self.options.slidingIn : - self.options.slidingIn : 0,
+					opacity : self.options.slidingIn ? 0 : 1,
+					transform : 'none'
 				} );
+			} );
 
 			if( !this.options.slidingIn ) {
 				this.opts
-					.eq( this.optsCount - 1 )
-					.css( { top : this.options.stack ? 9 : 0, left : this.options.stack ? 4 : 0, width : this.options.stack ? this.size.width - 8 : this.size.width, transform : 'none' } )
-					.end()
-					.eq( this.optsCount - 2 )
-					.css( { top : this.options.stack ? 6 : 0, left : this.options.stack ? 2 : 0, width : this.options.stack ? this.size.width - 4 : this.size.width, transform : 'none' } )
-					.end()
-					.eq( this.optsCount - 3 )
-					.css( { top : this.options.stack ? 3 : 0, left : 0, transform : 'none' } );
+				.eq( this.optsCount - 1 )
+				.css( { top : this.options.stack ? 9 : 0, left : this.options.stack ? 4 : 0, width : this.options.stack ? this.size.width - 8 : this.size.width, transform : 'none' } )
+				.end()
+				.eq( this.optsCount - 2 )
+				.css( { top : this.options.stack ? 6 : 0, left : this.options.stack ? 2 : 0, width : this.options.stack ? this.size.width - 4 : this.size.width, transform : 'none' } )
+				.end()
+				.eq( this.optsCount - 3 )
+				.css( { top : this.options.stack ? 3 : 0, left : 0, transform : 'none' } );
 			}
 
 		},
@@ -125,72 +124,112 @@
 				return false;
 			} );
 			this.opts.on( 'click.dropdown', function() {
-				if( self.opened ) {
+				if( self.opened ) {						
+					var data = this.getAttribute("data-value");
+				    $(".cd-active.cd-dropdown").each(function() {
+    					if(this.selected)
+    					{
+    						console.log("hello");
+    					}
+    				});
+					$('button.confirmation').click(function(){
+						if (data === "a" || data === "b" || data === "c" || data === "d" || data === "e"){
+							swal({  
+								title: "Confirm payment", text: "Are you sure you want to purchase this pass?", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){   
+								if (isConfirm) {
+									swal({
+										title: 'Sweet!', html: 'This will redirect you to PayPal for completion.<br>Be aware of blocked pop-ups.', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function (isConfirm) {
+										if(isConfirm){
+											if(data === "a")
+												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20Permits&amount=1%2e30&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											else if(data === "b")
+												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20Permits&amount=2%2e50&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											else if(data === "c")
+												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20Permits&amount=4%2e50&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											else if(data === "d")
+												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20Permits&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											else if(data === "e")
+												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20Permits&amount=12%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+					});
 					var opt = $( this );
 					self.options.onOptionSelect( opt );
 					self.inputEl.val( opt.data( 'value' ) );
 					self.selectlabel.html( opt.html() );
 					self.close();
 				}
-			} );
+			});
+},
+open : function() {
+	var self = this;
+	this.dd.toggleClass( 'cd-active' );
+	this.listopts.css( 'height', ( this.optsCount + 1 ) * ( this.size.height + this.options.gutter ) );
+	this.opts.each( function( i ) {
 
-		},
-		open : function() {
-			var self = this;
-			this.dd.toggleClass( 'cd-active' );
-			this.listopts.css( 'height', ( this.optsCount + 1 ) * ( this.size.height + this.options.gutter ) );
-			this.opts.each( function( i ) {
+		$( this ).css( {
+			opacity : 1,
+			top : self.options.rotated ? self.size.height + self.options.gutter : ( i + 1 ) * ( self.size.height + self.options.gutter ),
+			left : self.options.random ? Math.floor( Math.random() * 11 - 5 ) : 0,
+			width : self.size.width,
+			marginLeft : 0,
+			transform : self.options.random ?
+			'rotate(' + Math.floor( Math.random() * 11 - 5 ) + 'deg)' :
+			self.options.rotated ?
+			self.options.rotated === 'right' ?
+			'rotate(-' + ( i * 5 ) + 'deg)' :
+			'rotate(' + ( i * 5 ) + 'deg)'
+			: 'none',
+			transitionDelay : self.options.delay && Modernizr.csstransitions ? self.options.slidingIn ? ( i * self.options.delay ) + 'ms' : ( ( self.optsCount - 1 - i ) * self.options.delay ) + 'ms' : 0
+		} );
 
-				$( this ).css( {
-					opacity : 1,
-					top : self.options.rotated ? self.size.height + self.options.gutter : ( i + 1 ) * ( self.size.height + self.options.gutter ),
-					left : self.options.random ? Math.floor( Math.random() * 11 - 5 ) : 0,
-					width : self.size.width,
-					marginLeft : 0,
-					transform : self.options.random ?
-						'rotate(' + Math.floor( Math.random() * 11 - 5 ) + 'deg)' :
-						self.options.rotated ?
-							self.options.rotated === 'right' ?
-								'rotate(-' + ( i * 5 ) + 'deg)' :
-								'rotate(' + ( i * 5 ) + 'deg)'
-							: 'none',
-					transitionDelay : self.options.delay && Modernizr.csstransitions ? self.options.slidingIn ? ( i * self.options.delay ) + 'ms' : ( ( self.optsCount - 1 - i ) * self.options.delay ) + 'ms' : 0
-				} );
+	} );
+	this.opened = true;
 
-			} );
-			this.opened = true;
+},
+close : function() {
 
-		},
-		close : function() {
+	var self = this;
+	this.dd.toggleClass( 'cd-active' );
+	if( this.options.delay && Modernizr.csstransitions ) {
+		this.opts.each( function( i ) {
+			$( this ).css( { 'transition-delay' : self.options.slidingIn ? ( ( self.optsCount - 1 - i ) * self.options.delay ) + 'ms' : ( i * self.options.delay ) + 'ms' } );
+		} );
+	}
+	this._positionOpts( true );
+	this.opened = false;
 
-			var self = this;
-			this.dd.toggleClass( 'cd-active' );
-			if( this.options.delay && Modernizr.csstransitions ) {
-				this.opts.each( function( i ) {
-					$( this ).css( { 'transition-delay' : self.options.slidingIn ? ( ( self.optsCount - 1 - i ) * self.options.delay ) + 'ms' : ( i * self.options.delay ) + 'ms' } );
-				} );
-			}
-			this._positionOpts( true );
-			this.opened = false;
+}
 
-		}
+}
 
+$.fn.dropdown = function( options ) {
+	var instance = $.data( this, 'dropdown' );
+	if ( typeof options === 'string' ) {
+		var args = Array.prototype.slice.call( arguments, 1 );
+		this.each(function() {
+			instance[ options ].apply( instance, args );
+		});
+	}
+	else {
+		this.each(function() {
+			instance ? instance._init() : instance = $.data( this, 'dropdown', new $.DropDown( options, this ) );
+		});
 	}
 
-	$.fn.dropdown = function( options ) {
-		var instance = $.data( this, 'dropdown' );
-		if ( typeof options === 'string' ) {
-			var args = Array.prototype.slice.call( arguments, 1 );
-			this.each(function() {
-				instance[ options ].apply( instance, args );
-			});
-		}
-		else {
-			this.each(function() {
-				instance ? instance._init() : instance = $.data( this, 'dropdown', new $.DropDown( options, this ) );
-			});
-		}
-		return instance;
-	};
+	return instance;
+};
 
 } )( jQuery, window );
+
+
