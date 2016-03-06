@@ -15,6 +15,7 @@
  	var temp = null;
  	var data = null;
  	var vehicleVar = false;
+ 	var timeLim = false;
 
  	if(vehicleVar === false || temp === null || data === null )
 	{
@@ -150,10 +151,13 @@
 						temp = "v";
 					else if(data === "vp")
 						temp = "vp";
-					else if (data === "1") 
+					else if(data === "1") 
 						vehicleVar = true;
+					else if(data === "a" || data === "b" || data === "c" || data === "d" || data === "e" )
+						timeLim = true;
+					console.log(data);
 
-					if(temp !== null && data !== null && vehicleVar === true){
+					if(temp !== null && timeLim && vehicleVar){
 						$(".confirmation").css('background-color', '#4CAF50');
 						$(".confirmation").removeAttr('disabled');
 						$(".confirmation").removeClass('disabled');
