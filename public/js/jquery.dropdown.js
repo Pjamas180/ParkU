@@ -10,16 +10,18 @@
  */
  ;( function( $, window, undefined ) {
  	'use strict';
- 	var temp = null;
- 	/*var data = null;
- 	var vehicleVar = null;*/
 
-/* 	if(vehicleVar === null || temp === null || data === null )
+ 	/* Variables to disable/enable the purchase button */
+ 	var temp = null;
+ 	var data = null;
+ 	var vehicleVar = false;
+
+ 	if(vehicleVar === false || temp === null || data === null )
 	{
 		$(".confirmation").css('background-color', 'gray');
 		$(".confirmation").attr('disabled', 'disabled');
 		$(".confirmation").addClass('disabled');
-	}*/
+	}
 
  	$.DropDown = function( options, element ) {
  		this.$el = $( element );
@@ -134,7 +136,7 @@
 				return false;
 			} );
 			this.opts.on( 'click.dropdown', function() {
-				if( self.opened ) {						
+				if( self.opened ) {
 					var data = this.getAttribute("data-value");
 					// This is for spot type
 					var spot_Type ='//*[@id="uploadDocsForm"]/div[1]/ul/li[position() >= 1 and position() < 3]/span';
@@ -142,20 +144,20 @@
 
 					// This is for vehicle list
 					var vehicleXPATH = '//*[@id="uploadDocsForm"]/div[3]/ul/li/span';
-					var vehicleVar = document.evaluate( vehicleXPATH, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
-					console.log(vehicleVar);
+					var vehiclePath = document.evaluate( vehicleXPATH, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
+
 					if(data === "v")
 						temp = "v";
 					else if(data === "vp")
 						temp = "vp";
-					/*if(temp !== null && data !== null )
-					{
-						
+					else if (data === "1") 
+						vehicleVar = true;
+
+					if(temp !== null && data !== null && vehicleVar === true){
 						$(".confirmation").css('background-color', '#4CAF50');
 						$(".confirmation").removeAttr('disabled');
 						$(".confirmation").removeClass('disabled');
-						
-					}*/
+					}
 					$('button.confirmation').click(function(){
 						if (data === "a" || data === "b" || data === "c" || data === "d" || data === "e"){
 							swal({  
@@ -179,15 +181,15 @@
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=10%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											else if(data === "e" && temp === "v")
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(All%20Day)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "a" && temp === "vp" /*spot_dropdown.innerHTML === "Visitor (V)"*/)
+											else if(data === "a" && temp === "vp" /* VP */)
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(1hr)&amount=2%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "b" && temp === "vp" /*spot_dropdown.innerHTML === "Visitor (V)"*/)
+											else if(data === "b" && temp === "vp" /* VP */)
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(2hrs)&amount=4%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "c" && temp === "vp" /*spot_dropdown.innerHTML === "Visitor (V)"*/)
+											else if(data === "c" && temp === "vp" /* VP */)
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(4hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "d" && temp === "vp" /*spot_dropdown.innerHTML === "Visitor (V)"*/)
+											else if(data === "d" && temp === "vp" /* VP */)
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "e" && temp === "vp" /*spot_dropdown.innerHTML === "Visitor (V)"*/)
+											else if(data === "e" && temp === "vp" /* VP */)
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(All%20Day)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											else
 												alert("The dropdowns are not complete yet.")
