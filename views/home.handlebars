@@ -61,13 +61,21 @@
         <div class="options">
             <p><b>Current registered permits:</b>&nbsp&nbspYou currently have none registered.</p><br>
             <p class="custom_option">To purchase a permit complete the list below.</p>
+            <div id="v_available">
+                <span>V Spots Available: </span>
+                <span id="v_spots"> {{v_spots}} </span>
+            </div> 
+            <div id="vp_available">
+                <span>VP Spots Available: </span>
+                <span id="vp_spots"> {{vp_spots}} </span>
+            </div> 
             <section class="main clearfix">
                 <h3>Select a spot type:</h3>
                 <form name="uploadDocsForm" id="uploadDocsForm">   
                     <select id="cd-dropdown" name="cd-dropdown" class="cd-select is-hidden">
                         <option value="-1" selected>Spot Type</option>
-                        <option value="v">Visitor (V)</option>
-                        <option value="vp">Visitor Premium (VP)</option>
+                        <option value="v">Visitor (V)</option> 
+                        <option value="vp">Visitor Premium (VP)</option> 
                     </select>
 
                     <h3>Select a time limit:</h3>
@@ -120,13 +128,16 @@
     <script type="text/javascript">
     $( function() {
         $( '#cd-dropdown' ).dropdown( {
-            gutter : 0
+            gutter : 0,
+            number : 1
         } );
         $( '#cd-dropdown2' ).dropdown( {
-            gutter : 0
+            gutter : 0,
+            number : 2
         } );
         $( '#cd-dropdown3' ).dropdown( {
-            gutter : 0
+            gutter : 0,
+            number : 3
         } );
     });
 

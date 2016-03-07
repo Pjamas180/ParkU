@@ -31,7 +31,7 @@
 
 	// the options
 	$.DropDown.defaults = {
-		speed : 300,
+		speed : 500,
 		easing : 'ease',
 		gutter : 0,
 		// initial stack effect
@@ -45,6 +45,7 @@
 		rotated : false,
 		// effect to slide in the options. value is the margin to start with
 		slidingIn : false,
+		number : 0,
 		onOptionSelect : function(opt) { return false; }
 	};
 
@@ -95,7 +96,9 @@
 			} );
 			this.listopts = $( '<ul/>' ).append( optshtml );
 			this.selectlabel = $( '<span/>' ).append( selectlabel );
-			this.dd = $( '<div class="cd-dropdown"/>' ).append( this.selectlabel, this.listopts ).insertAfter( this.$el );
+			var cd_dropdown = "cd-dropdown" + this.options.number;
+			// console.log(cd_dropdown);
+			this.dd = $( '<div class="cd-dropdown" id="'+cd_dropdown+'"/>' ).append( this.selectlabel, this.listopts ).insertAfter( this.$el );
 			this.$el.remove();
 
 			return value;
@@ -141,8 +144,7 @@
 					var data = this.getAttribute("data-value");
 					// This is for spot type
 					var spot_Type ='//*[@id="uploadDocsForm"]/div[1]/ul/li[position() >= 1 and position() < 3]/span';
-					var spot_dropdown = document.evaluate( spot_Type, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
-
+					var spot_dropdown = document.evaluate( spot_Type, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 					// This is for vehicle list
 					var vehicleXPATH = '//*[@id="uploadDocsForm"]/div[3]/ul/li/span';
 					var vehiclePath = document.evaluate( vehicleXPATH, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;	
@@ -175,28 +177,49 @@
 										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
 									}, function (isConfirm) {
 										if(isConfirm){
-											if(data === "a" && temp === "v")
+											if(data === "a" && temp === "v"){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(1hr)&amount=1%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "b" && temp === "v")
+												$.post('/v_spots', updateVSpotCount);
+											}
+											else if(data === "b" && temp === "v"){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(2hrs)&amount=2%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "c" && temp === "v")
+												$.post('/v_spots', updateVSpotCount);
+											}
+											else if(data === "c" && temp === "v"){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(4hrs)&amount=5%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "d" && temp === "v")
+												$.post('/v_spots', updateVSpotCount);
+											}
+											else if(data === "d" && temp === "v"){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=10%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "e" && temp === "v")
+												$.post('/v_spots', updateVSpotCount);
+											}
+											else if(data === "e" && temp === "v"){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(All%20Day)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "a" && temp === "vp" /* VP */)
+												$.post('/v_spots', updateVSpotCount);
+											}
+											else if(data === "a" && temp === "vp" /* VP */){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(1hr)&amount=2%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "b" && temp === "vp" /* VP */)
+												$.post('/vp_spots', updateVPSpotCount);
+											}
+											else if(data === "b" && temp === "vp" /* VP */){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(2hrs)&amount=4%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "c" && temp === "vp" /* VP */)
+												$.post('/vp_spots', updateVPSpotCount);
+											}
+											else if(data === "c" && temp === "vp" /* VP */){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(4hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "d" && temp === "vp" /* VP */)
+												$.post('/vp_spots', updateVPSpotCount);
+											}
+											else if(data === "d" && temp === "vp" /* VP */){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else if(data === "e" && temp === "vp" /* VP */)
+												$.post('/vp_spots', updateVPSpotCount);
+											}
+											else if(data === "e" && temp === "vp" /* VP */){
 												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(All%20Day)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											else
-												alert("The dropdowns are not complete yet.")
+												$.post('/vp_spots', updateVPSpotCount);
+											}
+											else {
+												alert("The dropdowns are not complete yet.");
+											}
 										}
 									});
 								}
@@ -269,6 +292,22 @@ $.fn.dropdown = function( options ) {
 	return instance;
 };
 
+
+
 } )( jQuery, window );
+
+
+
+function updateVSpotCount(result) {
+	var idNumber = result['v_spots'];
+	//$('#v_spots').innerHTML = idNumber;
+}
+
+function updateVPSpotCount(result) {
+	var idNumber = result['v_spots'];
+	//$('#v_spots').innerHTML = idNumber;
+
+}
+
 
 
