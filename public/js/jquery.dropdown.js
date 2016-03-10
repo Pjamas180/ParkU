@@ -165,61 +165,48 @@
 						$(".confirmation").removeClass('disabled');
 					}
 					$('button.confirmation').click(function(){
-						if (data === "a" || data === "b" || data === "c" || data === "d" || data === "e"){
+						if(data === "a" && temp === "v") {
 							swal({  
-								title: "Confirm payment", text: "Are you sure you want to purchase this pass?", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥133</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
-								if (isConfirm) {
+								if(isConfirm){
+									window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(1hr)&amount=1%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+									$.post('/v_spots', updateVSpotCount);
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "b" && temp === "v"){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥267</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(2hrs)&amount=2%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+									$.post('/v_spots', updateVSpotCount);
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "c" && temp === "v"){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥533</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
 									swal({
 										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
 										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
-									}, function (isConfirm) {
-										if(isConfirm){
-											if(data === "a" && temp === "v"){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(1hr)&amount=1%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/v_spots', updateVSpotCount);
-											}
-											else if(data === "b" && temp === "v"){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(2hrs)&amount=2%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/v_spots', updateVSpotCount);
-											}
-											else if(data === "c" && temp === "v"){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(4hrs)&amount=5%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/v_spots', updateVSpotCount);
-											}
-											else if(data === "d" && temp === "v"){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=10%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/v_spots', updateVSpotCount);
-											}
-											else if(data === "e" && temp === "v"){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(All%20Day)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/v_spots', updateVSpotCount);
-											}
-											else if(data === "a" && temp === "vp" /* VP */){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(1hr)&amount=2%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/vp_spots', updateVPSpotCount);
-											}
-											else if(data === "b" && temp === "vp" /* VP */){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(2hrs)&amount=4%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/vp_spots', updateVPSpotCount);
-											}
-											else if(data === "c" && temp === "vp" /* VP */){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(4hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/vp_spots', updateVPSpotCount);
-											}
-											else if(data === "d" && temp === "vp" /* VP */){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/vp_spots', updateVPSpotCount);
-											}
-											else if(data === "e" && temp === "vp" /* VP */){
-												window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(All%20Day)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-												$.post('/vp_spots', updateVPSpotCount);
-											}
-											else {
-												alert("The dropdowns are not complete yet.");
-											}
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(4hrs)&amount=5%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/v_spots', updateVSpotCount);
 										}
 									});
 								}
@@ -227,6 +214,157 @@
 									swal("Declined!", "Transaction was not processed!", "error");   
 							});
 						}
+						else if(data === "d" && temp === "v"){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥1067</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=10%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/v_spots', updateVSpotCount);											
+										}
+									});
+
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "e" && temp === "v"){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥800</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/v_spots', updateVSpotCount);											
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "a" && temp === "vp" /* VP */){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥200</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=2%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/vp_spots', updateVSpotCount);											
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "b" && temp === "vp" /* VP */){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥400</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=4%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/vp_spots', updateVSpotCount);											
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "c" && temp === "vp" /* VP */){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥800</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/vp_spots', updateVSpotCount);											
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "d" && temp === "vp" /* VP */){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥1600</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/vp_spots', updateVSpotCount);											
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						else if(data === "e" && temp === "vp" /* VP */){
+							swal({  
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥1600</span>", type: "warning",
+								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
+								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
+							}, function(isConfirm){
+								if(isConfirm){
+									swal({
+										title: 'Sweet!', html: 'Clicking this will redirect you to PayPal for completion.<br>Look out for blocked pop-ups!', 
+										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
+									}, function(isConfirm) {
+										if (isConfirm) {
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											$.post('/vp_spots', updateVSpotCount);											
+										}
+									});
+								}
+								else
+									swal("Declined!", "Transaction was not processed!", "error");   
+							});
+						}
+						//else {
+						//	alert("The dropdowns are not complete yet.");
+						//}
 					});
 					var opt = $( this );
 					self.options.onOptionSelect( opt );
