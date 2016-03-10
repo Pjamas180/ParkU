@@ -18,7 +18,7 @@ var home = function(req, res, next) {
       var userIden = req.user.get("userId");
       var username = req.user.attributes.username;
       // Get all vehicles of the user.
-      console.log("WHAT THE FUCK?!?!?!?");
+
 
       con.query('SELECT vehicleId, vehicleName, licensePlateNumber FROM vehicles WHERE userId = ?', userIden,
           function(err, rows) {
@@ -79,11 +79,26 @@ var signInPost = function(req, res, next) {
 // sign up
 // GET
 var signUp = function(req, res, next) {
-	if(req.isAuthenticated()) {
-		res.redirect('/home');
-	} else {
-		res.render('/');
-	}
+	passport.authenticate('local', { successRedirect: '/home',
+		failureRedirect: '/'}, function(err, user, info) {
+			if(err) {
+				return res.render('index');
+			} 
+
+			if(!user) {
+				return res.render('index');
+			}
+			//	res.redirect('/home');
+			req.logIn(user, function(err) {
+				//return res.redirect('/home');
+				if(err) {
+					return res.render('index');
+				} else {
+					var user = req.body;
+					res.render('settings', {username: user.username, signup: 'Insert your Vehicle Name and License Plate Number.'});
+				}
+			});
+		})(req, res, next);
 };
 
 // sign up
@@ -96,7 +111,7 @@ var signUpPost = function(req, res, next) {
 
 	return usernamePromise.then(function(model) {
 		if(model) {
-			res.render('/', {title: 'signup', errorMessage: 'username already exists'});
+			res.render('index', {title: 'signup', errorMessage: 'username already exists'});
 		} else {
          //****************************************************//
          // MORE VALIDATION GOES HERE(E.G. PASSWORD VALIDATION)
@@ -108,7 +123,7 @@ var signUpPost = function(req, res, next) {
 
          signUpUser.save().then(function(model) {
             // sign in the newly registered user
-            signInPost(req, res, next);
+            signUp(req, res, next);
         });	
      }
  });
