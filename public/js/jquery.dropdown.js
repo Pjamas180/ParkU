@@ -177,6 +177,7 @@
 									}, function(isConfirm) {
 										window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(1hr)&amount=1%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 										$.post('/v_spots', updateVSpotCount);
+										$('#permit_registered').html("Your permit expires at: " + showTime("1"));
 									});
 								}
 								else
@@ -196,7 +197,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(2hrs)&amount=2%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/v_spots', updateVSpotCount);											
+											$.post('/v_spots', updateVSpotCount);
+											$('#permit_registered').html("Your permit expires at: " + showTime("2"));									
 										}
 									});
 								}
@@ -218,6 +220,7 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(4hrs)&amount=5%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/v_spots', updateVSpotCount);
+											$('#permit_registered').html("Your permit expires at: " + showTime("4"));
 										}
 									});
 								}
@@ -238,7 +241,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=10%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/v_spots', updateVSpotCount);											
+											$.post('/v_spots', updateVSpotCount);
+											$('#permit_registered').html("Your V permit expires at: " + showTime("8"));
 										}
 									});
 
@@ -260,7 +264,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(Full)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/v_spots', updateVSpotCount);											
+											$.post('/v_spots', updateVSpotCount);
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("0") + " on this day: the " + showDay());			
 										}
 									});
 								}
@@ -281,7 +286,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(1hr)&amount=2%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/vp_spots', updateVSpotCount);											
+											$.post('/vp_spots', updateVSpotCount);
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("1"));							
 										}
 									});
 								}
@@ -302,7 +308,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(2hrs)&amount=4%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/vp_spots', updateVSpotCount);											
+											$.post('/vp_spots', updateVSpotCount);
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("2"));										
 										}
 									});
 								}
@@ -323,7 +330,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(4hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/vp_spots', updateVSpotCount);											
+											$.post('/vp_spots', updateVSpotCount);
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("4"));		
 										}
 									});
 								}
@@ -344,7 +352,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/vp_spots', updateVSpotCount);											
+											$.post('/vp_spots', updateVSpotCount);
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("8"));						
 										}
 									});
 								}
@@ -365,7 +374,8 @@
 									}, function(isConfirm) {
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
-											$.post('/vp_spots', updateVSpotCount);											
+											$.post('/vp_spots', updateVSpotCount);
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("0") + " on this day: the " + showDay());							
 										}
 									});
 								}
@@ -453,9 +463,34 @@ function updateVSpotCount(result) {
 }
 
 function updateVPSpotCount(result) {
-	var idNumber = result['v_spots'];
+	var idNumber = result['vp_spots'];
 	//$('#v_spots').innerHTML = idNumber;
+}
 
+function showTime(num) {
+	var timeNow = new Date();
+	var timeString = "";
+	var hours   = timeNow.getHours() + parseInt(num, 10);
+	var minutes = timeNow.getMinutes();
+
+	if( hours === 0 ){
+		hours = 12;
+		timeString  += ((hours > 12) ? hours - 12 : hours);
+		timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
+		timeString  += " A.M.";
+	}
+	else{
+		timeString  += ((hours > 12) ? hours - 12 : hours);
+		timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
+		timeString  += (hours >= 12) ? " P.M." : " A.M.";
+	}
+	return timeString;
+}
+function showDay(){
+	var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+
+	var day = currentDate.getDate();
+	return day;	
 }
 
 

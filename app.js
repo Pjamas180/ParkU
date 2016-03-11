@@ -133,7 +133,8 @@ app.get('/home', function(req, res, next) {
                 'car': [],
                 'message': username,
                 'v_spots': spots['v_spots'],
-                'vp_spots': spots['vp_spots']
+                'vp_spots': spots['vp_spots'],
+                'time_left': spots['time_left']
               };
 
               for (var i = 0; i < rows.length; i++) {
@@ -301,6 +302,27 @@ app.post('/v_spots', function(req, res) {
   //var vp_spots = spots['vp_spots'];
   v_spots--;
   spots['v_spots'] = v_spots;
+
+  /*var timeNow = new Date();
+  var timeString = "";
+  var hours   = timeNow.getHours() + parseInt(num, 10);
+  console.log(hours);
+  var minutes = timeNow.getMinutes();
+
+  if( hours === 0 ){
+    hours = 12;
+    timeString  += ((hours > 12) ? hours - 12 : hours);
+    timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
+    timeString  += " A.M.";
+  }
+  else{
+    timeString  += ((hours > 12) ? hours - 12 : hours);
+    timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
+    timeString  += (hours >= 12) ? " P.M." : " A.M.";
+  }
+
+  spots['time_left'] = timeString;*/
+
   res.json(spots);
 });
 

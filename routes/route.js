@@ -12,8 +12,6 @@ var home = function(req, res, next) {
   if(!req.isAuthenticated()) {
     res.redirect('/');
   } else {
-
-  	
     // Get session user.
       var userIden = req.user.get("userId");
       var username = req.user.attributes.username;
