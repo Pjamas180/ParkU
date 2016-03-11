@@ -166,7 +166,7 @@
 					$('button.confirmation').click(function(){
 						if(data === "a" && temp === "v") {
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥133</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$1.33</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -178,6 +178,7 @@
 										window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(1hr)&amount=1%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 										$.post('/v_spots', updateVSpotCount);
 										$('#permit_registered').html("Your permit expires at: " + showTime("1"));
+										$('#v_spots').html(parseInt($('#v_spots').text(), 10)-1);
 									});
 								}
 								else
@@ -186,7 +187,7 @@
 						}
 						else if(data === "b" && temp === "v"){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥267</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$2.67</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -198,7 +199,8 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(2hrs)&amount=2%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/v_spots', updateVSpotCount);
-											$('#permit_registered').html("Your permit expires at: " + showTime("2"));									
+											$('#permit_registered').html("Your permit expires at: " + showTime("2"));
+											$('#v_spots').html(parseInt($('#v_spots').text(), 10)-1);							
 										}
 									});
 								}
@@ -208,7 +210,7 @@
 						}
 						else if(data === "c" && temp === "v"){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥533</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$5.33</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -221,6 +223,7 @@
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(4hrs)&amount=5%2e33&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/v_spots', updateVSpotCount);
 											$('#permit_registered').html("Your permit expires at: " + showTime("4"));
+											$('#v_spots').html(parseInt($('#v_spots').text(), 10)-1);
 										}
 									});
 								}
@@ -230,7 +233,7 @@
 						}
 						else if(data === "d" && temp === "v"){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥1067</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$7.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -240,9 +243,10 @@
 										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
 									}, function(isConfirm) {
 										if (isConfirm) {
-											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=10%2e67&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(8hrs)&amount=7%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/v_spots', updateVSpotCount);
 											$('#permit_registered').html("Your V permit expires at: " + showTime("8"));
+											$('#v_spots').html(parseInt($('#v_spots').text(), 10)-1);
 										}
 									});
 
@@ -253,7 +257,7 @@
 						}
 						else if(data === "e" && temp === "v"){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥800</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$8.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -265,7 +269,8 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20V%20Permits%20(Full)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/v_spots', updateVSpotCount);
-											$('#permit_registered').html("Your VP permit expires at: " + showTime("0") + " on this day: the " + showDay());			
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("0") + " on <strong><em>" + showDay() + "</em></strong>.");
+											$('#v_spots').html(parseInt($('#v_spots').text(), 10)-1);
 										}
 									});
 								}
@@ -275,7 +280,7 @@
 						}
 						else if(data === "a" && temp === "vp" /* VP */){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥200</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$2.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -287,7 +292,8 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(1hr)&amount=2%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/vp_spots', updateVSpotCount);
-											$('#permit_registered').html("Your VP permit expires at: " + showTime("1"));							
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("1"));
+											$('#vp_spots').html(parseInt($('#vp_spots').text(), 10)-1);
 										}
 									});
 								}
@@ -297,7 +303,7 @@
 						}
 						else if(data === "b" && temp === "vp" /* VP */){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥400</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$4.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -309,7 +315,8 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(2hrs)&amount=4%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/vp_spots', updateVSpotCount);
-											$('#permit_registered').html("Your VP permit expires at: " + showTime("2"));										
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("2"));
+											$('#vp_spots').html(parseInt($('#vp_spots').text(), 10)-1);
 										}
 									});
 								}
@@ -319,7 +326,7 @@
 						}
 						else if(data === "c" && temp === "vp" /* VP */){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥800</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$8.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -331,7 +338,8 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(4hrs)&amount=8%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/vp_spots', updateVSpotCount);
-											$('#permit_registered').html("Your VP permit expires at: " + showTime("4"));		
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("4"));
+											$('#vp_spots').html(parseInt($('#vp_spots').text(), 10)-1);	
 										}
 									});
 								}
@@ -341,7 +349,7 @@
 						}
 						else if(data === "d" && temp === "vp" /* VP */){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥1600</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$14.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -351,9 +359,10 @@
 										imageUrl: 'images/thumbs-up.jpg', animation: true, showCancelButton: true, cancelButtonColor: "#DD6B55"
 									}, function(isConfirm) {
 										if (isConfirm) {
-											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
+											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=14%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/vp_spots', updateVSpotCount);
-											$('#permit_registered').html("Your VP permit expires at: " + showTime("8"));						
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("8"));
+											$('#vp_spots').html(parseInt($('#vp_spots').text(), 10)-1);					
 										}
 									});
 								}
@@ -363,7 +372,7 @@
 						}
 						else if(data === "e" && temp === "vp" /* VP */){
 							swal({  
-								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>¥1600</span>", type: "warning",
+								title: "Confirm payment", html: "Are you sure you want to purchase this pass? <br> <span style='color:green; font-size:30px; padding-top:50px;'>$16.00</span>", type: "warning",
 								showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#DD6B55", confirmButtonText: "Confirm",
 								cancelButtonText: "Decline", closeOnConfirm: false, closeOnCancel: false, allowOutsideClick: false, allowEscapeKey: true
 							}, function(isConfirm){
@@ -375,7 +384,8 @@
 										if (isConfirm) {
 											window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=LWHJW82U99LPU&lc=US&item_name=UCSD%20VP%20Permits%20(8hrs)&amount=16%2e00&currency_code=USD&button_subtype=services&no_note=0&cn=Add%20special%20instructions%20to%20the%20seller%3a&no_shipping=2&tax_rate=0%2e000&shipping=0%2e00&bn=PP%2dBuyNowBF%3abtn_paynowCC_LG%2egif%3aNonHosted, _blank');
 											$.post('/vp_spots', updateVSpotCount);
-											$('#permit_registered').html("Your VP permit expires at: " + showTime("0") + " on this day: the " + showDay());							
+											$('#permit_registered').html("Your VP permit expires at: " + showTime("0") + " on <strong><em>" + showDay() + "</em></strong>.");
+											$('#vp_spots').html(parseInt($('#vp_spots').text(), 10)-1);
 										}
 									});
 								}
@@ -383,9 +393,6 @@
 									swal("Declined!", "Transaction was not processed!", "error");   
 							});
 						}
-						//else {
-						//	alert("The dropdowns are not complete yet.");
-						//}
 					});
 					var opt = $( this );
 					self.options.onOptionSelect( opt );
@@ -459,12 +466,10 @@ $.fn.dropdown = function( options ) {
 
 function updateVSpotCount(result) {
 	var idNumber = result['v_spots'];
-	//$('#v_spots').innerHTML = idNumber;
 }
 
 function updateVPSpotCount(result) {
 	var idNumber = result['vp_spots'];
-	//$('#v_spots').innerHTML = idNumber;
 }
 
 function showTime(num) {
@@ -477,20 +482,20 @@ function showTime(num) {
 		hours = 12;
 		timeString  += ((hours > 12) ? hours - 12 : hours);
 		timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
-		timeString  += " A.M.";
+		timeString  += " a.m.";
 	}
 	else{
 		timeString  += ((hours > 12) ? hours - 12 : hours);
 		timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
-		timeString  += (hours >= 12) ? " P.M." : " A.M.";
+		timeString  += (hours >= 12) ? " p.m." : " a.m.";
 	}
 	return timeString;
 }
 function showDay(){
-	var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-
-	var day = currentDate.getDate();
-	return day;	
+	var currday = new Date();
+	var date = "";
+	date += (currday.getMonth()+1) + "/" + (currday.getDate()+1) + "/" + currday.getFullYear();
+	return date;
 }
 
 
