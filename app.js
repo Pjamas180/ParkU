@@ -23,6 +23,7 @@ var login = require('./routes/login');
 var route = require('./routes/route');
 var settings = require('./routes/settings');
 var Model = require('./model');
+var spots = require('./spots.json');
 // Example route
 // var user = require('./routes/user');
 
@@ -130,7 +131,9 @@ app.get('/home', function(req, res, next) {
               if (err) throw err;
               var homePageJSON = {
                 'car': [],
-                'message': username
+                'message': username,
+                'v_spots': spots['v_spots'],
+                'vp_spots': spots['vp_spots']
               };
 
               for (var i = 0; i < rows.length; i++) {
@@ -290,6 +293,22 @@ console.log(queries.recordsTotal);
 
 app.get('/admin', function(req, res) {
   res.render('adminhome');
+});
+
+// Update amount of spots left
+app.post('/v_spots', function(req, res) {
+  var v_spots = spots['v_spots'];
+  //var vp_spots = spots['vp_spots'];
+  v_spots--;
+  spots['v_spots'] = v_spots;
+  res.json(spots);
+});
+
+app.post('/vp_spots', function(req, res) {
+  var vp_spots = spots['vp_spots'];
+  vp_spots--;
+  spots['vp_spots'] = vp_spots;
+  res.json(spots);
 });
 
 
