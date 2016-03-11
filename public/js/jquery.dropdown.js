@@ -155,7 +155,6 @@
 						vehicleVar = true;
 					else if(data === "a" || data === "b" || data === "c" || data === "d" || data === "e" )
 						timeLim = true;
-					console.log(data);
 
 					if(temp !== null && timeLim && vehicleVar){
 						$(".confirmation").css('background-color', '#4CAF50');
