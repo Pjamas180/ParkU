@@ -157,7 +157,7 @@ var settings = function(req, res, next) {
 		//console.log(req.user.attributes);
 		//console.log(req.user.get("vehicle"));
 		var user = req.user.attributes.username;
-		res.render('settings', {message: user});
+		res.render('settings', {username: user});
 	}
 }
 
